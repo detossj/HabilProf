@@ -35,8 +35,6 @@ class AuthController extends Controller
             'password' => bcrypt($validated['password']),
         ]);
 
-        $user->assignRole('client');
-
         $response['token'] = $user->createToken('mobile')->plainTextToken;
         $response['user'] = $user;
         $response['success'] = true;
@@ -67,8 +65,6 @@ class AuthController extends Controller
                 'email' => ['El correo electrónico o la contraseña son incorrectos.'],
             ]);
         }
-
-        $user->hasRole('client');
 
         $response['token'] = $user->createToken('mobile')->plainTextToken;
         $response['user'] = $user;
