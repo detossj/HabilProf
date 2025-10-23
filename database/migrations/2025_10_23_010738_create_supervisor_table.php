@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('run_empresa');
             $table->timestamps();
 
-            $table->foregin('run_empresa')->references('run_empresa')->on('empresa')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('run_empresa')->references('run_empresa')->on('empresa')->cascadeOnUpdate()->cascadeOnDelete();
 
         });
     }

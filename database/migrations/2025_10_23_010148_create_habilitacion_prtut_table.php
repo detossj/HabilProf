@@ -24,8 +24,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('run_alumno')->references('run_alumno')->on('alumno')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->unsignedInteger('run_profesor_tutor')->references('run_profesor_tutor')->on('profesor_tutor')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->unsignedInteger('run_supervisor')->references('run_supervisor')->on('supervisor')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('run_profesor_tutor')->references('run_profesor_tutor')->on('profesor_tutor')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('run_supervisor')->references('run_supervisor')->on('supervisor')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

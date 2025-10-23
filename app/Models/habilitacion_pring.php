@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class habilitacion_pring extends Model
+class Habilitacion_pring extends Model
 {
     use HasFactory;
     protected $table = 'habilitacion_pring';

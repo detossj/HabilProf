@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class habilitacion_prinv extends Model
+class Habilitacion_prinv extends Model
 {
     use HasFactory;
     protected $table = 'habilitacion_prinv';
