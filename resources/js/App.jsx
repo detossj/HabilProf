@@ -12,7 +12,7 @@ const App = () => {
 
         <Route path="/" element={<LayoutPublic/>}>
 
-          <Route path='/login' element={ <Login/> } />
+          <Route index element={ <Login/> } />
         
         </Route>
       
