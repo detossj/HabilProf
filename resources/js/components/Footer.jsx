@@ -2,7 +2,9 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <div className='container d-flex justify-content-center align-items-center mb-5'>
+      © 2025 UCSC. Todos los derechos reservados
+    </div>
   )
 }
 
