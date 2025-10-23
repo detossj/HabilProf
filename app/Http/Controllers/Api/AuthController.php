@@ -18,6 +18,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users',
+            'rut' => 'required|integer|unique:users',
             'password' => 'required|string|confirmed|min:6',
             'password_confirmation' => 'required|string|min:6',
         ]);
@@ -32,8 +33,11 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
+            'rut' => $validated['rut'],
             'password' => bcrypt($validated['password']),
         ]);
+
+        $user->assignRole('administrador');
 
         $response['token'] = $user->createToken('mobile')->plainTextToken;
         $response['user'] = $user;
@@ -43,36 +47,44 @@ class AuthController extends Controller
         
     }
 
-    public function login(Request $request) {
-
+    public function login(Request $request)
+    {
         $response = ["success" => false];
-
+    
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required',
+            'rut' => 'required|integer',
+            'password' => 'required|string',
         ]);
         
         if ($validator->fails()) {
-            $response = ["error" => $validator->errors()];
-            return response()->json($response, 200);
+            return response()->json([
+                'success' => false,
+                'message' => 'Datos inválidos',
+                'errors' => $validator->errors(),
+            ], 422);
         }
-        
-
-        $user = User::where('email', $request->email)->first();
-
-        if(! $user || ! Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['El correo electrónico o la contraseña son incorrectos.'],
-            ]);
+    
+        $user = User::where('rut', $request->rut)->first();
+    
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'RUT o contraseña incorrectos',
+            ], 401);
         }
 
-        $response['token'] = $user->createToken('mobile')->plainTextToken;
-        $response['user'] = $user;
-        $response['message'] = "Login success";
-        $response['success'] = true;
-
-        return response()->json($response, 200);
+        $user->hasRole('administrador');
+    
+        $token = $user->createToken('mobile')->plainTextToken;
+    
+        return response()->json([
+            'success' => true,
+            'message' => 'Inicio de sesión exitoso',
+            'user' => $user,
+            'token' => $token,
+        ]);
     }
+    
 
     public function logout() {
 
