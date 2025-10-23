@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('alumnos', function (Blueprint $table) {
-            $table->unsignedBigInteger('run')->primary();
-            $table->string('nombre', 100);
-            $table->string('correo', 254);
+        Schema::create('profesor_co_guia', function (Blueprint $table) {
+            $table->unsignedInteger('run_profesor_co_guia')->primary();
+            $table->string('nombre_profesor_co_guia', 100);
+            $table->string('correo_profesor_co_guia', 254);
+            $table->boolean('DINF')->default(false);
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alumnos');
+        Schema::dropIfExists('profesor_co_guia');
     }
 };
