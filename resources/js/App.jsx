@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import LayoutPublic from './layouts/LayoutPublic';
 import Login from './pageAuth/Login';
+import Register from './pageAuth/Register';
 import LayoutAlumno from './layouts/LayoutAlumno';
 import LayoutAdministrador from './layouts/LayoutAdministrador';
 import LayoutProfesor from './layouts/LayoutProfesor';
@@ -21,6 +22,8 @@ const App = () => {
         <Route path="/" element={<LayoutPublic/>}>
 
           <Route index element={<Login/>} />
+
+          <Route path='/register' element={ <Register/>} />
 
         </Route>
 
