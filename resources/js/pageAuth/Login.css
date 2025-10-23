@@ -1,0 +1,45 @@
+
+
+/* Estilos de la Tarjeta */
+.login-card {
+    border-radius: 15px;
+    border: none;
+    padding: 20px;
+}
+
+/* Colores y Fuentes */
+.text-portal {
+    color: #495057; 
+    font-size: 1.75rem;
+}
+
+/* Estilos de Inputs */
+.login-input-control {
+    height: 45px;
+    font-size: 1rem;
+}
+
+/* Estilos del Botón INGRESAR */
+.btn-ucsc-red {
+    background-color: #D9232D; 
+    border-color: #D9232D;
+    color: white;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    font-weight: bold; 
+}
+
+.btn-ucsc-red:hover {
+    background-color: #B31E26; 
+    border-color: #B31E26;
+    color: white;
+}
+
+/* Estilo para las etiquetas (RUT, Contraseña) */
+.login-label {
+    color: #495057;
+    font-size: 1rem;
+    font-weight: bolder;
+}
