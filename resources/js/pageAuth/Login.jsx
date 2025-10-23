@@ -5,7 +5,7 @@ import Config from '../Config'
 import AuthUser from './AuthUser'
 import axios from 'axios'
 
-import './Login.css'; 
+import './LoginAndRegister.css'; 
 import ucscLogo from '../../assets/images/Logo-UCSC-Color-Horizontal.png'; 
 
 const Login = () => {
@@ -54,8 +54,11 @@ const Login = () => {
                                 className='d-block mx-auto mb-3' 
                             />
                           
-                            <h2 className='fw-bold text-portal'>
+                            <h2 className='fw-bold text-title-portal'>
                               HabilProf
+                            </h2> 
+                            <h2 className='fw-bold text-subtitle-portal'>
+                              Iniciar sesión
                             </h2> 
                         </div>
                         
@@ -95,6 +98,16 @@ const Login = () => {
                         <button className='btn w-100 btn-ucsc-red' onClick={submitLogin} >
                           INGRESAR
                         </button>
+
+                        <div className='w-100 text-center mt-3'>
+                          <p className='d-inline'>¿No tiene cuenta? </p>
+                          <a 
+                              href="/register" 
+                              className='d-inline fw-bold text-primary text-decoration-none'
+                          >
+                              Regístrese aquí
+                          </a>
+                      </div>
 
                         <p className='text-center mt-3'>{message}</p>
                     </div>
