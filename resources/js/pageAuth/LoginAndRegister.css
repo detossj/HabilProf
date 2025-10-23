@@ -7,9 +7,15 @@
     padding: 20px;
 }
 
-/* Colores y Fuentes */
-.text-portal {
+/* Colores y Fuentes Titulo */
+.text-title-portal {
     color: #495057; 
+    font-size: 1.5rem;
+}
+
+/* Colores y Fuentes SubTitle*/
+.text-subtitle-portal {
+    color: black; 
     font-size: 1.75rem;
 }
 
