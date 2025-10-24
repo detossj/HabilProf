@@ -15,4 +15,6 @@ class Supervisor extends Model
     protected $fillable = ['run_supervisor','nombre_supervisor', 'run_empresa'];
 
     public function empresa() {return $this->belongsTo(empresa::class, 'run_empresa', 'run_empresa');}
+    public function prtuts() {return $this->hasMany(habilitacion_prtut::class, 'run_supervisor', 'run_supervisor');}
+    
 }

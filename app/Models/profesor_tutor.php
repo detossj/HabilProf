@@ -16,5 +16,5 @@ class Profesor_tutor extends Model
 
     protected $fillable = ['run_profesor_tutor', 'nombre_profesor_tutor', 'correo_profesor_tutor'];
 
-    public function prtut() {return $this->hasMany(habilitacion_prtut::class, 'run_profesor_tutor', 'run_profesor_tutor');}
+    public function prtuts() {return $this->hasMany(habilitacion_prtut::class, 'run_profesor_tutor', 'run_profesor_tutor');}
 }
