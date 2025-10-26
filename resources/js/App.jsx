@@ -10,6 +10,7 @@ import LayoutAdministrador from './layouts/LayoutAdministrador';
 import LayoutProfesor from './layouts/LayoutProfesor';
 import ProtectedRoutes from './pageAuth/ProtectedRoutes';
 import PublicRoutes from './pageAuth/PublicRoutes';
+import CreateEnablement from './pageadmin/CreateEnablement';
 
 const App = () => {
   return (
@@ -33,6 +34,8 @@ const App = () => {
         <Route element={<ProtectedRoutes/>}>
 
           <Route path="/admin" element={<LayoutAdministrador/>}>
+
+            <Route index element={ <CreateEnablement/> }/>
            
           </Route>
 
