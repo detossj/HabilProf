@@ -6,7 +6,7 @@ const ProtectedRoutes = () => {
   const { getToken } = AuthUser()
 
   if(!getToken()) {
-    return <Navigate to={'/login'} />
+    return <Navigate to={'/'} />
   }
   return (
     <Outlet/>
