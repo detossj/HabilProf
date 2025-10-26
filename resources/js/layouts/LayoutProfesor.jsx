@@ -15,11 +15,11 @@ const LayoutProfesor = () => {
     },[])
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div>
         {/* Esto empuja el Footer al final y hace que se pueda centrar  */}
-        <div style={{ flexGrow: 1, display: 'flex' }}>
-        <h1>LayoutProfesor</h1>
-            <Outlet/>
+        <div>
+          <h1>LayoutProfesor</h1>
+          <Outlet/>
         </div>
         <Footer/>
     </div>
