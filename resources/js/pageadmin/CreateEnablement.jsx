@@ -26,10 +26,10 @@ const CreateEnablement = () => {
     };
 
   return (
-    <div className='container d-flex justify-content-center align-items-center'>
+    <div className="mx-auto" style={{ maxWidth: '800px', padding: '20px' }}>
       <div className="row">
-        <div className="col-sm-9 mt-3 mb-3">
-          <div className="card p-5">
+        <div className="col-sm-12 mt-3 mb-3">
+          <div className="card p-5" style={{maxWidth:'400 px'}}>
             <div className="card-body">
               <form className='form-group row' onSubmit={handleSubmit}>
 
