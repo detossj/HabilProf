@@ -16,7 +16,6 @@ const LayoutProfesor = () => {
 
   return (
     <div>
-        {/* Esto empuja el Footer al final y hace que se pueda centrar  */}
         <div>
           <h1>LayoutProfesor</h1>
           <Outlet/>
