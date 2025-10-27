@@ -17,17 +17,15 @@ const LayoutAlumno = () => {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        {/* Esto empuja el Footer al final y hace que se pueda centrar  */}
-        <div style={{ 
+        <TopBar/>
+          <div style={{ 
               flexGrow: 1, 
               display: 'flex', 
               flexDirection: 'column',
               justifyContent: 'center', // Centra verticalmente el contenido del Outlet
               alignItems: 'center'      // Centra horizontalmente el contenido del Outlet (el formulario)
-          }}>
-          <TopBar/>
-            <Outlet/>
-        </div>
+          }}></div>
+          <Outlet/>
         <Footer/>
     </div>
   )
