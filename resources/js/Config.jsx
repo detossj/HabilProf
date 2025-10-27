@@ -25,5 +25,6 @@ export default {
     }
     return response;
   },
+  getRegister: (data) => axios.post(`${base_api_url}/auth/register`, data),
   getLogout: () => axios.post(`${base_api_url}/auth/logout`)
 }
