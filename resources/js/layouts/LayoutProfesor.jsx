@@ -16,8 +16,8 @@ const LayoutProfesor = () => {
     },[])
 
   return (
-    <div>
-        <div>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <TopBar/>
           <div style={{ 
               flexGrow: 1, 
               display: 'flex', 
@@ -25,9 +25,7 @@ const LayoutProfesor = () => {
               justifyContent: 'center', // Centra verticalmente el contenido del Outlet
               alignItems: 'center'      // Centra horizontalmente el contenido del Outlet (el formulario)
           }}></div>
-          <TopBar/>
           <Outlet/>
-        </div>
         <Footer/>
     </div>
   )
