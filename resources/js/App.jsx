@@ -11,6 +11,8 @@ import LayoutProfesor from './layouts/LayoutProfesor';
 import ProtectedRoutes from './pageAuth/ProtectedRoutes';
 import PublicRoutes from './pageAuth/PublicRoutes';
 import CreateEnablement from './pageadmin/CreateEnablement';
+import UpdateDeleteEnablement from './pageadmin/UpdateDeleteEnablement'
+import ListadosEnablement from './pageadmin/ListadosEnablement';
 
 const App = () => {
   return (
@@ -36,7 +38,9 @@ const App = () => {
           <Route path="/admin" element={<LayoutAdministrador/>}>
 
             <Route index element={ <CreateEnablement/> }/>
-           
+            <Route index element={ <UpdateDeleteEnablement/> }/>
+            <Route index element={ <ListadosEnablement/> }/>
+
           </Route>
 
           <Route path="/alum" element={<LayoutAlumno/>}>
