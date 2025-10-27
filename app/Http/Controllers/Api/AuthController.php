@@ -11,41 +11,44 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function register(Request $request) {
 
-        $response = ["success" => false];
-
+    public function register(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users',
-            'rut' => 'required|integer|unique:users',
+            'rut' => 'required|string|unique:users',
             'password' => 'required|string|confirmed|min:6',
-            'password_confirmation' => 'required|string|min:6',
+            'roleFromRegistro' => 'required|string|in:alumno,profesor',
         ]);
-        
+    
         if ($validator->fails()) {
-            $response = ["error" => $validator->errors()];
-            return response()->json($response, 200);
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors(),
+            ], 422);
         }
-
+    
         $validated = $validator->validated();
-
+    
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'rut' => $validated['rut'],
             'password' => bcrypt($validated['password']),
         ]);
-
-        $user->assignRole('administrador');
-
-        $response['token'] = $user->createToken('mobile')->plainTextToken;
-        $response['user'] = $user;
-        $response['success'] = true;
-
-        return response()->json($response, 201);
-        
+    
+        $user->assignRole($validated['roleFromRegistro']);
+    
+        $token = $user->createToken('mobile')->plainTextToken;
+    
+        return response()->json([
+            'success' => true,
+            'user' => $user,
+            'token' => $token,
+        ], 201);
     }
+    
 
     public function login(Request $request)
     {
