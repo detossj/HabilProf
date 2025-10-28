@@ -24,20 +24,40 @@ const Login = () => {
       }
     },[])
   
-    const submitLogin = async(e) => {
+    const submitLogin = async (e) => {
       e.preventDefault();
-      await axios.get('/sanctum/csrf-cookie').then((response) => {
-        Config.getLogin({rut,password})
-        .then(({data}) => {
-          if(data.success) {
-            setToken(data.user, data.token, data.user.roles[0].name)
-          }
-          else {
-            setMessage(data.data.message)
-          }
-        })
-      })
-    }
+      setMessage("Verificando RUT y contraseña...");
+    
+      try {
+        await axios.get('/sanctum/csrf-cookie');
+    
+
+        const { data } = await Config.getLogin({ rut, password });
+    
+        if (data.success) {
+          setToken(data.user, data.token, data.user.roles[0].name);
+          setMessage("Inicio de sesión exitoso");
+
+          setTimeout(() => {
+            navigate("/"); 
+          }, 500);
+        } else {
+          // Mostrar mensaje de error del backend
+          setMessage(data.message || "RUT o contraseña incorrectos");
+        }
+      } catch (error) {
+        console.error(error);
+        // Si Laravel retorna 401, mostrar mensaje
+        if (error.response && error.response.status === 401) {
+          setMessage(error.response.data.message || "RUT o contraseña incorrectos");
+        } else if (error.response && error.response.data?.message) {
+          setMessage(error.response.data.message);
+        } else {
+          setMessage("Error al iniciar sesión");
+        }
+      }
+    };
+    
 
     return (
         <div className='container d-flex justify-content-center align-items-center' >
@@ -109,7 +129,7 @@ const Login = () => {
                           </a>
                       </div>
 
-                        <p className='text-center mt-3'>{message}</p>
+                      <p className='text-center mt-3 text-danger'>{message}</p>
                     </div>
                 </div>
             </div>
