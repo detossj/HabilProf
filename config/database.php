@@ -63,6 +63,25 @@ return [
             ]) : [],
         ],
 
+        'mysql_sistemas_ucsc' => [
+            'driver' => 'mysql',
+            'url' => env('DB_URL_UCSC'),
+            'host' => env('DB_HOST_UCSC', '127.0.0.1'),
+            'port' => env('DB_PORT_UCSC', '3306'),
+            'database' => env('DB_DATABASE_UCSC', 'laravel'),
+            'username' => env('DB_USERNAME_UCSC', 'root'),
+            'password' => env('DB_PASSWORD_UCSC', ''),
+            'charset' => env('DB_CHARSET_UCSC', 'utf8mb4'),
+            'collation' => env('DB_COLLATION_UCSC', 'utf8mb4_unicode_ci'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
