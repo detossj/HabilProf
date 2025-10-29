@@ -15,11 +15,8 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users',
             'rut' => 'required|string|unique:users',
             'password' => 'required|string|confirmed|min:6',
-            'roleFromRegistro' => 'required|string|in:alumno,profesor',
         ]);
     
         if ($validator->fails()) {
@@ -29,27 +26,62 @@ class AuthController extends Controller
             ], 422);
         }
     
-        $validated = $validator->validated();
+        $rut = $request->rut;
     
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'rut' => $validated['rut'],
-            'password' => bcrypt($validated['password']),
+        // Buscar si el rut existe en Alumnos 
+        $alumno = \App\Models\Alumno::where('run_alumno', $rut)->first();
+    
+        // Buscar si existe en cualquiera de los tipos de Profesor
+        $profesor = collect([
+            \App\Models\Profesor_guia::where('run_profesor_guia', $rut)->first(),
+            \App\Models\Profesor_co_guia::where('run_profesor_co_guia', $rut)->first(),
+            \App\Models\Profesor_comision::where('run_profesor_comision', $rut)->first(),
+            \App\Models\Profesor_tutor::where('run_profesor_tutor', $rut)->first(),
+        ])->filter()->first();
+    
+        if (!$alumno && !$profesor) {
+            return response()->json([
+                'success' => false,
+                'message' => 'El RUT no se encuentra registrado en los sistemas UCSC.',
+            ], 404);
+        }
+    
+        // Definir datos base según tipo
+        $role = $alumno ? 'alumno' : 'profesor';
+        $name = $alumno->nombre_alumno ?? $profesor->nombre_profesor_guia 
+            ?? $profesor->nombre_profesor_co_guia 
+            ?? $profesor->nombre_profesor_comision 
+            ?? $profesor->nombre_profesor_tutor ?? 'Sin nombre';
+        $email = $alumno->correo_alumno ?? $profesor->correo_profesor_guia
+            ?? $profesor->correo_profesor_co_guia
+            ?? $profesor->correo_profesor_comision
+            ?? $profesor->correo_profesor_tutor
+            ?? "{$rut}@ucsc.cl";
+    
+        // Crear usuario
+        $user = \App\Models\User::create([
+            'name' => $name,
+            'email' => $email,
+            'rut' => $rut,
+            'password' => bcrypt($request->password),
         ]);
     
-        $user->assignRole($validated['roleFromRegistro']);
-    
+        $user->assignRole($role);
+
+        // Cargar el rol
+        $user->load('roles');
+        
         $token = $user->createToken('mobile')->plainTextToken;
-    
+        
         return response()->json([
             'success' => true,
             'user' => $user,
             'token' => $token,
         ], 201);
+        
     }
     
-
+    
     public function login(Request $request)
     {
         $response = ["success" => false];
