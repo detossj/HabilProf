@@ -92,7 +92,7 @@ const ListEnablement = () => {
           <Link to={-1} className="btn btn-secondary">
             Atrás
           </Link>
-          <button className="btn btn-primary" onClick={generarListado}>
+          <button className="btn btn-danger" onClick={generarListado}>
             Generar listado
           </button>
         </div>
