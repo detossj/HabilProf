@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const ListadosEnablement = () => {
+const ListEnablement = () => {
   const [tipoListado, setTipoListado] = useState("");
   const [data, setData] = useState([]);
 
@@ -170,4 +170,4 @@ const ListadosEnablement = () => {
   );
 };
 
-export default ListadosEnablement;
+export default ListEnablement;
