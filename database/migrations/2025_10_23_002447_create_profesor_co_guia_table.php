@@ -15,7 +15,6 @@ return new class extends Migration
             $table->unsignedInteger('run_profesor_co_guia')->primary();
             $table->string('nombre_profesor_co_guia', 100);
             $table->string('correo_profesor_co_guia', 254);
-            $table->boolean('DINF')->default(false);
             $table->timestamps();
         });
     }
