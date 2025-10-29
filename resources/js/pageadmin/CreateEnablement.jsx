@@ -150,7 +150,7 @@ const CreateEnablement = () => {
 
                 <div className='btn-group mt-3'>
                   <Link to={-1} className='btn btn-secondary'>Atrás</Link>
-                  <button type='submit' className='btn btn-primary'>Crear Habilitación</button>
+                  <button type='submit' className='btn btn-danger'>Crear Habilitación</button>
                 </div>
               </form>
             </div>
