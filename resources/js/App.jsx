@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import LayoutPublic from './layouts/LayoutPublic';
 import Login from './pageAuth/Login';
 import Register from './pageAuth/Register';
@@ -37,8 +37,8 @@ const App = () => {
         <Route element={<ProtectedRoutes/>}>
 
           <Route path="/admin" element={<LayoutAdministrador/>}>
-
-            <Route path='create' element={ <CreateEnablement/> }/>
+            <Route index element={<Navigate to="create" replace />} />
+            <Route path="create" element={<CreateEnablement />} />
             <Route path='updatedelete' element={ <UpdateDeleteEnablement/> }/>
             <Route path='list' element={ <ListEnablement/> }/>
 
