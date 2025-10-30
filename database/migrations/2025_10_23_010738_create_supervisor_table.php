@@ -14,10 +14,7 @@ return new class extends Migration
         Schema::create('supervisor', function (Blueprint $table) {
             $table->unsignedInteger('run_supervisor')->primary();
             $table->string('nombre_supervisor', 100);
-            $table->unsignedInteger('run_empresa');
             $table->timestamps();
-
-            $table->foreign('run_empresa')->references('run_empresa')->on('empresa')->cascadeOnUpdate()->cascadeOnDelete();
 
         });
     }
