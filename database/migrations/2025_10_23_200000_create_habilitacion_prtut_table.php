@@ -21,11 +21,13 @@ return new class extends Migration
             $table->unsignedInteger('run_alumno');
             $table->unsignedInteger('run_profesor_tutor');
             $table->unsignedInteger('run_supervisor');
+            $table->unsignedInteger('run_empresa');
             $table->timestamps();
 
             $table->foreign('run_alumno')->references('run_alumno')->on('alumno')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('run_profesor_tutor')->references('run_profesor_tutor')->on('profesor_tutor')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('run_supervisor')->references('run_supervisor')->on('supervisor')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('run_empresa')->references('run_empresa')->on('empresa')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
