@@ -26,11 +26,14 @@ const Register = () => {
 
   const submitRegister = async (e) => {
     e.preventDefault();
+
   
     if (password !== passwordConfirmation) {
       setMessage("Las contraseñas no coinciden");
       return;
     }
+
+    setMessage("Verificando RUT en los sistemas UCSC...");
   
     try {
       await axios.get("/sanctum/csrf-cookie");
@@ -66,7 +69,7 @@ const Register = () => {
   
   
   return (
-    <div className='container d-flex justify-content-center align-items-center'>
+    <div className='container d-flex justify-content-center align-items-center min-vh-100'>
       <div className='col-sm-10 col-md-6 col-lg-4'>
         <div className='card shadow-lg login-card'>
           <div className='card-body d-flex flex-column align-items-center'>
