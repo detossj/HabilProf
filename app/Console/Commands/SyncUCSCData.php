@@ -125,7 +125,7 @@ class SyncUCSCData extends Command
         foreach ($notas as $n) {
 
             // Solo procesar notas que contengan "habilitacion profesional"
-            if (!isset($n['descripcion']) || stripos($n['descripcion'], 'habilitacion profesional') === false) {
+            if (!isset($n['titulo']) || stripos($n['titulo'], 'Habilitación Profesional') === false) {
                 continue;
             }
 
