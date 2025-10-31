@@ -4,6 +4,8 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import AuthUser from '../pageAuth/AuthUser'
 import TopBar from '../components/TopBar'
 
+import './Layout.css'; 
+
 const LayoutAlumno = () => {
 
     const { getRol } = AuthUser()
@@ -15,20 +17,15 @@ const LayoutAlumno = () => {
       }
     },[])
 
-  return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <TopBar/>
-          <div style={{ 
-              flexGrow: 1, 
-              display: 'flex', 
-              flexDirection: 'column',
-              justifyContent: 'center', // Centra verticalmente el contenido del Outlet
-              alignItems: 'center'      // Centra horizontalmente el contenido del Outlet (el formulario)
-          }}></div>
-          <Outlet/>
-        <Footer/>
-    </div>
-  )
+    return (
+      <div className="d-flex flex-column min-vh-100 layout-administrador-contenedor" >
+          <TopBar />
+          <main className="flex-grow-1 d-flex flex-column justify-content-start align-items-center p-3">
+              <Outlet />
+          </main>
+          <Footer />
+      </div>
+    )
 }
 
 export default LayoutAlumno
