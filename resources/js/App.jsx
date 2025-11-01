@@ -13,6 +13,8 @@ import PublicRoutes from './pageAuth/PublicRoutes';
 import CreateEnablement from './pageadmin/CreateEnablement';
 import UpdateDeleteEnablement from './pageadmin/UpdateDeleteEnablement';
 import ListEnablement from './pageadmin/ListEnablement';
+import IngresoHabilitacion from './pageAuth/CreateHabilitacion';
+
 
 
 const App = () => {
@@ -39,6 +41,7 @@ const App = () => {
           <Route path="/admin" element={<LayoutAdministrador/>}>
             <Route index element={<Navigate to="create" replace />} />
             <Route path="create" element={<CreateEnablement />} />
+            <Route path="ingreso-habilitacion" element={<IngresoHabilitacion/>} />
             <Route path='updatedelete' element={ <UpdateDeleteEnablement/> }/>
             <Route path='list' element={ <ListEnablement/> }/>
 

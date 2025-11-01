@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\HabilitacionController;
 use App\Http\Controllers\Externo\AlumnoExternoController;
 use App\Http\Controllers\Externo\ProfesorExternoController;
 use App\Http\Controllers\Externo\NotaExternoController;
@@ -18,6 +19,15 @@ Route::prefix('v1')->group(function () {
     Route::group(['middleware' => 'auth:sanctum'], function () {
         //::auth
         Route::post('/auth/logout',[AuthController::class, 'logout']);
+
+        //::habilitaciones
+        Route::prefix('habilitacion')->group(function () {
+        // Registrar nueva habilitación profesional
+        Route::post('/', [HabilitacionController::class, 'store']);
+
+        // Listar habilitaciones (opcional: ?tipo=PrIng|PrInv|PrTut)
+        Route::get('/', [HabilitacionController::class, 'index']);
+        });
     });
 });
 
